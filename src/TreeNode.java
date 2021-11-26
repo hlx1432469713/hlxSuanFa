@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  *date：2021-11-22
  *
@@ -9,6 +11,7 @@ public class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
+    List<TreeNode> children;
     TreeNode(int val){
         this.val = val;
     }
