@@ -9,7 +9,7 @@ import java.util.Queue;
  * work:  翻转一棵二叉树。
  *
  */
-public class TreeNodeForty021126 {
+public class TreeNodeForty2021126 {
     public static void main(String[] args){}
 
     public TreeNode searchBST(TreeNode root, int val) {
