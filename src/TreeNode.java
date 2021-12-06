@@ -22,7 +22,7 @@ public class TreeNode {
         this.right = right;
         this.next = next;
     }
-
+    TreeNode() {}
     public void addNode(int val){
         TreeNode newTreeNode = new TreeNode(val);
     }
