@@ -16,15 +16,15 @@ import java.util.Stack;
 public class charTwentySix20211119 {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        while(scanner.hasNextLine()){
-            String s = scanner.nextLine();
+        while(scanner.hasNext()){
+            String s = scanner.next();
             int k = scanner.nextInt();
             String result = reverseLeftWords(s,k);
             System.out.println(result);
         }
     }
 
-    //用队列
+    //用队列--用时过长
     static public String reverseLeftWords(String s, int n) {
         Queue<Character> queue = new LinkedList<>();
         String result = "";
@@ -41,7 +41,7 @@ public class charTwentySix20211119 {
         return result;
     }
 
-    //先局部反转  再  整体反转（还没有具体看代码）
+    //先局部反转  再  整体反转
     static private  String reverseLeftWords2(String s, int n) {
         int len=s.length();
         StringBuilder sb=new StringBuilder(s);
