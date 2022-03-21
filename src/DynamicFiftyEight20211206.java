@@ -45,4 +45,22 @@ public class DynamicFiftyEight20211206 {
         return cur;
     }
 
+    //动态规划
+    // 2.1 确定dp数组（dp table）以及下标的含义 : dp[i] : 代表 到第i项的和为dp[i]
+    //  2.2 确定递推公式 : dp[i] = dp[i - 1] + dp[i -2]
+    //  2.3 dp数组如何初始化dp[0] = 0,dp[1] = 1
+    //  2.4 确定遍历顺序
+    //  2.5 举例推导dp数组
+    static int fib3(int n){
+        if (n <= 1)
+            return n;
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        dp[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1] + dp[i -2];
+        }
+        return dp[n];
+    }
+
 }
