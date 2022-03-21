@@ -1,7 +1,5 @@
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.IntStream;
 
 /**
  *date：2021-12-03
@@ -37,6 +35,7 @@ public class shuZuFiftyFour20211203 {
     //for循环
     static public int largestSumAfterKNegations(int[] nums, int k) {
         int sum = 0;
+        int index = -1;
        while(k > 0){
             int min = nums[0];
             int flag = 0;
@@ -46,15 +45,38 @@ public class shuZuFiftyFour20211203 {
                     flag = j;
                 }
             }
-            nums[flag] = -nums[flag];
+            //如果当前最小已经大于0，说明数组整体全为正数，这时候只要看k是否为奇数，若是就将最小的那个置负数即可
+            if (nums[flag] > 0) {
+                index = flag;
+                break;
+            }
+            nums[flag] *= -1;
             k--;
         }
+       if (k % 2 == 1 && index != -1 )
+           nums[index] *= -1;
         for(int i = 0;i < nums.length;i++)
             sum += nums[i];
         return sum;
     }
 
-    //优化方法
-    //先把数组排好序，再从头开始遍历，遇到负数就反转，遇到 0 就跳出循环，遇到正数再分情况讨论。
-    //https://leetcode-cn.com/problems/maximize-sum-of-array-after-k-negations/solution/tong-ge-lai-shua-ti-la-yi-ti-liu-jie-bao-ltzg/
+    //排序比较耗时间
+    static public int largestSumAfterKNegations2(int[] nums, int k){
+      //将数组按照绝对值大小从大到小排序
+        nums = IntStream.of(nums).boxed().sorted(((o1, o2) -> Math.abs(o2) - Math.abs(o1)))
+                .mapToInt(Integer::intValue).toArray();
+        for(int i = 0;i < nums.length;i++){
+            if(nums[i] < 0 && k > 0){
+                nums[i] *= -1;
+                k--;
+            }
+        }
+        if (k % 2 == 1)
+            nums[nums.length - 1] *= -1;
+        int sum = 0;
+        for (int x : nums)
+            sum += x;
+        return sum;
+
+    }
 }
