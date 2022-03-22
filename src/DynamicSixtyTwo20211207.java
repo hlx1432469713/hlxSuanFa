@@ -53,4 +53,34 @@ public class DynamicSixtyTwo20211207 {
 
     }
 
+    //动态规划
+    // 2.1 确定dp数组（dp table）以及下标的含义 : dp[i][j] :代表从（0,0）到达（i,j）位置，共有dp[i][j]条路径
+    //  2.2 确定递推公式 :dp[i][j] = dp[i - 1][j] + dp[i][j - 1]
+    //  2.3 dp数组如何初始化dp[0 ~ m][0] = 1,dp[0][0 ~ n] = 1,遇到石头就置为0
+    //  2.4 确定遍历顺序从左到右，从上到下
+    //  2.5 举例推导dp数组
+    static  public int uniquePathsWithObstacles2(int[][] obstacleGrid){
+        int m = obstacleGrid.length;
+        int n = obstacleGrid[0].length;
+        int[][]dp = new int[m][n];
+        for (int i = 0;i < m;i++){
+            if(obstacleGrid[i][0] == 1) break;
+            dp[i][0] = 1;
+        }
+        for (int j = 0;j < n;j++){
+            if(obstacleGrid[0][j] == 1) break;
+            dp[0][j] = 1;
+        }
+        for (int i = 1;i < m;i++)
+            for (int j = 1;j < n;j++){
+                if (obstacleGrid[i][j] == 1)
+                    dp[i][j] = 0;
+                else{
+                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+                }
+            }
+        return dp[m - 1][n - 1];
+
+    }
+
 }
