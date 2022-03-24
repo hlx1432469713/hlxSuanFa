@@ -26,7 +26,7 @@ public class flashBackOneHundredTwentyFour20220221 {
             for (int i = 0;i < n;i++)
                 nums[i] = scanner.nextInt();
             int target = scanner.nextInt();
-            int result = findTargetSumWays(nums,target);
+            int result = findTargetSumWays2(nums,target);
             System.out.println(result);
         }
 
@@ -51,6 +51,29 @@ public class flashBackOneHundredTwentyFour20220221 {
            backtracking(nums,target,start + 1,sum - nums[start]);
        }
    }
+
+   //动态规划
+   // 2.1 确定dp数组（dp table）以及下标的含义 : dp[i] : 代表总共有dp[i]种方法来填满容量为i的背包，
+   //  2.2 确定递推公式 : dp[j] += dp[j - nums[i]];
+   //  2.3 dp数组如何初始化dp[0] = 1 背包容量为0，装满该背包有一种方法 就是装0件物品
+   //  2.4 确定遍历顺序：先遍历物品，再遍历背包
+    static public int findTargetSumWays2(int[] nums, int target) {
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        if ((sum + target) % 2 == 1 || sum < Math.abs(target))
+            return 0;
+        int n = (sum + target) / 2;
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        for (int i = 0;i < nums.length;i++){
+            for (int j = n;j >= nums[i];j--)
+                dp[j] += dp[j - nums[i]];
+        }
+        return dp[n];
+
+    }
 
 
 }
