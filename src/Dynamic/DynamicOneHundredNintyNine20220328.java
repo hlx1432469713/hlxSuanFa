@@ -28,12 +28,15 @@ public class DynamicOneHundredNintyNine20220328 {
         //  单词 wordDict 是物品，
         // 字符串 s 为 背包
         //  单词能否组成字符串 s ，即物品能否将背包装满
-        // 可以无限使用是完全背包问题，遍历顺序：先遍历物品 在遍历背包容量
+        // 可以无限使用是完全背包问题，遍历顺序：先遍历背包容量，再遍历物品（因为求子串，字符串s为背包）
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
+        //外层表示带分割字符串的长度
         for(int i = 1;i <= s.length();i++){
+            //内层表示对字符串进行分割，j代表分割开始位置（也代表分割的第一部分的长度），每次都去比较，分割位置前的那部分字符串是否已经能够由字典
+            //中的单词组成，如果能组成，然后再看分割位置后面的部分能否由字典中的单词组成，只有两部分都是true，才能判断长度为i的字符串可以拆分为一个或多个在字典中出现的单词
             for (int j = 0;j < i;j++){
-                if (wordDict.contains(s.substring(j,i)) && dp[j])
+                if (dp[j] && wordDict.contains(s.substring(j,i)))
                     dp[i] = true;
             }
         }

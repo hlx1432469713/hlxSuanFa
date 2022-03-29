@@ -23,12 +23,10 @@ public class DynamicOneHundredNintyFive20220326 {
         }
     }
     /**
-     // 2.1 确定dp数组（dp table）以及下标的含义 : dp[j]:装满容量为j的背包，共有dp[j]种组合(排列)
-     //  2.2 确定递推公式 :   dp[i] += dp[i - nums[j]];
-     //  2.3 dp数组如何初始化  dp[0] = 1
-     //  2.4 确定遍历顺序：由于顺序不同的序列被视为不同的组合，因此这个算是一个排列问题
-                        排列问题：先遍历背容量，再遍历物品
-                        (每个物品的数量是无限的)完全背包问题：内层背包容量循环：正序遍历
+     // 2.1 确定dp数组（dp table）以及下标的含义 :
+     //  2.2 确定递推公式 :
+     //  2.3 dp数组如何初始化
+     //  2.4 确定遍历顺序：
      */
     static   public int numSquares(int n) {
         int[] dp = new int[n + 1];
@@ -42,6 +40,27 @@ public class DynamicOneHundredNintyFive20220326 {
                     if(dp[j -i] != max){
                         dp[j] = Math.min(dp[j],dp[j - i] + 1);
                     }
+                }
+            }
+        }
+        return dp[n];
+    }
+    static public int numSquares2(int n) {
+        /**
+         * 首先背包物品是无限的，所以是个完全背包问题，内层循环：正序遍历
+         * 其次是求组合，所以遍历顺序是先遍历物品，再遍历背包容量
+         */
+        int[] dp = new int[n + 1];
+        dp[0] = 0;
+        int max = Integer.MAX_VALUE;
+        for (int i = 1;i < dp.length;i++)
+            dp[i] = max;
+        //先遍历物品
+        for (int i = 1;i*i <= n;i++){
+            //再遍历背包容量，每次都从完全平方数开始
+            for (int j = i*i;j <=n;j++){
+                if(dp[j - i*i] !=max){
+                    dp[j] = Math.min(dp[j],dp[j - i*i] + 1);
                 }
             }
         }
