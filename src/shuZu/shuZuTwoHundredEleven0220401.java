@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- *date：2022-03-31
+ *date：2022-04-01
  *
  * message : 面试题 17.18. 最短超串
  *
