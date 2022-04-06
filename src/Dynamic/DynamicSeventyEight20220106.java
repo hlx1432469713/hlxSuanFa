@@ -38,5 +38,27 @@ public class DynamicSeventyEight20220106 {
 
     }
 
+    /** 动态规划
+     // 2.1 确定dp数组（dp table）以及下标的含义 :dp[i][0] 表示第i天持有股票所得最多现金 ，
+                                            dp[i][1] 表示第i天不持有股票所得最多现金
+     //  2.2 确定递推公式 :dp[0] = Math.max(left[0],left[1]) + Math.max(right[0],right[1]);
+     dp[1] = left[0]+ right[0] + root.val;
+     //  2.3 dp数组如何初始化
+     //  2.4 确定遍历顺序：后序遍历
+     */
+    static public int maxProfit2(int[] prices) {
+        //该题需要注意的是，只能买卖一次    -price
+        if (prices == null || prices.length == 0) return 0;
+        int[][] dp = new int[prices.length][2];
+        dp[0][0] = -prices[0];
+        for(int i = 1;i < prices.length;i++){
+            int price = prices[i];
+            dp[i][0] = Math.max(dp[i - 1][0],-price);
+            //dp[i - 1][0] + price ----相当于卖出股票
+            dp[i][1] = Math.max(dp[i - 1][1],dp[i - 1][0] + price);
+        }
+        //经过prices.length - 1 天后，最后肯定是卖出了股票，所以返回的是不持有股票的最大值
+        return dp[prices.length - 1][1];
+    }
 
 }
