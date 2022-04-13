@@ -23,7 +23,7 @@ import static javax.swing.UIManager.put;
  *
  *             这个题目暂时没有做出来，下面只是正确答案
  */
-public class shuZuNineteen02111111 {
+public class shuZuNineteen202111111 {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         int num = scanner.nextInt();
