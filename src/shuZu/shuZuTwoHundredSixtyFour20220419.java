@@ -27,7 +27,7 @@ import java.util.Stack;
  *
  *
  */
-public class shuZuTwoHundredSixtyThree20220419 {
+public class shuZuTwoHundredSixtyFour20220419 {
     public static void main(String[] args){}
 
     public void nextPermutation(int[] nums) {
