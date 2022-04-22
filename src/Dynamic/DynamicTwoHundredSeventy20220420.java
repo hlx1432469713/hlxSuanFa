@@ -20,8 +20,10 @@ public class DynamicTwoHundredSeventy20220420 {
     public static void main(String[] args){}
     /**
      // 2.1 确定dp数组（dp table）以及下标的含义 :dp[i][j][0,1,2,3]:以i,j为中心，其向左，向上，向右，向下的连续 1 的个数为dp[i][j][0,1,2,3]
-     //  2.2 确定递推公式：dp[i][j][0] = dp[i][j - 1][0] + 1
-                        dp[i][j][1] = dp[i - 1][j][1] + 1
+     //  2.2 确定递推公式： dp[i][j][0] = dp[i][j - 1][0] + 1
+                         dp[i][j][1] = dp[i - 1][j][1] + 1
+                         dp[i][j][2] = dp[i][j + 1][2] + 1;
+                         dp[i][j][3] = dp[i + 1][j][3] + 1;
      //  2.3 dp数组如何初始化
      //  2.4 确定遍历顺序：后序遍历
      */
@@ -54,7 +56,7 @@ public class DynamicTwoHundredSeventy20220420 {
             for (int j = 0;j < n;j++) {
                 if (list[i][j] == 1) {
                     ans = Math.max(ans,Math.min(Math.min(dp[i + 1][j  + 1][0],dp[i + 1][j  + 1][1]),
-                            Math.min(dp[i + 1][j  + 1][2],dp[i + 1][j  + 1][3])));
+                                                 Math.min(dp[i + 1][j  + 1][2],dp[i + 1][j  + 1][3])));
                 }
             }
         }
