@@ -1,7 +1,7 @@
 package TreeNode;
 
 /**
- *date：2022-04-28
+ *date：2022-04-29
  *
  * message :剑指 Offer 28. 对称的二叉树
  *
@@ -9,7 +9,7 @@ package TreeNode;
  *
  *
  */
-public class NodeThreeHundredFour20220429 {
+public class TreeNodeThreeHundredFour20220429 {
     public static void main(String[] args){}
 
     public boolean isSymmetric(TreeNode root) {
